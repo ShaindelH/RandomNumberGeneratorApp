@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/activity_horizontal_margin_double"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:showIn="@layout/content_main">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/multi_text_view_style"
+        android:text="@string/from_text_view" />
+
+    <EditText
+        android:id="@+id/from_number"
+        style="@style/main_edit_text_style"
+        android:hint="@string/from_helper_text"
+        android:inputType="number" />
+
+    <TextView
+        style="@style/multi_text_view_style"
+        android:text="@string/to_text_view" />
+
+    <EditText
+        android:id="@+id/to_number"
+        style="@style/main_edit_text_style"
+        android:hint="@string/to_helper_text"
+        android:inputType="number" />
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+

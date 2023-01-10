@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">RandomNumberGenerator</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="banner_text">Please enter the numbers.</string>
+    <string name="from_helper_text">Enter starting range</string>
+    <string name="to_helper_text">Enter ending range</string>
+    <string name="from_text_view">From</string>
+    <string name="to_text_view">To</string>
+    <string name="generate_number">Generate Number</string>
+    <string name="about_title">About Random Number Generator</string>
+    <string name="about_content">App created by Shaindel Haimson in Course MCOO 255, Fall \'22</string>
+    <string name="about">About</string>
+    <string name="history">Show History</string>
+    <string name="clear_history">Clear History</string>
+    <string name="random_number_title"><![CDATA[Random Number: ]]></string>
+</resources>
