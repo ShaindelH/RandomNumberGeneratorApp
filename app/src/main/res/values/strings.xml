@@ -16,4 +16,5 @@
     <string name="history">Show History</string>
     <string name="clear_history">Clear History</string>
     <string name="random_number_title"><![CDATA[Random Number: ]]></string>
+    <string name="saving_key">History</string>
 </resources>

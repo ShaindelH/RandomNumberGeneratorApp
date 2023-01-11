@@ -4,7 +4,9 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
 import static com.example.randomnumbergenerator.libs.Utils.getJSONStringFromNumberList;
+import static com.example.randomnumbergenerator.libs.Utils.getNumberListFromJSONString;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.randomnumbergenerator.R;
@@ -20,6 +22,7 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.preference.PreferenceManager;
 
 import com.example.randomnumbergenerator.databinding.ActivityMainBinding;
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer> mNumberHistory;
     private Snackbar mSnackBar;
     private TextView mTextViewResults;
+    private String mKey = getString(R.string.saving_key);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mTextViewResults = findViewById(R.id.random_number_text_view);
         mRandomNumber = new RandomNumber();
-        initializeHistoryList(savedInstanceState,"HISTORY");
+        initializeHistoryList(savedInstanceState, mKey);
 
 
     }
@@ -73,9 +77,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("HISTORY", getJSONStringFromNumberList(mNumberHistory));
+        outState.putString(mKey, getJSONStringFromNumberList(mNumberHistory));
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        saveListInSharedPrefs();
+    }
+    private void saveListInSharedPrefs() {
+        SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = defaultSharedPreferences.edit();
+
+        editor.putString(mKey, getJSONStringFromNumberList(mNumberHistory));
+        editor.apply();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        restoreFromPreferences();
+    }
+    private void restoreFromPreferences() {
+        SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String listString = defaultSharedPreferences.getString(mKey, null);
+        if (listString!=null) {
+            mNumberHistory = getNumberListFromJSONString(listString);
+        }
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
